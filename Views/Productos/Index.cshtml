@@ -1,0 +1,28 @@
+@model List<SuperMarket_Lois.Models.Categoria>
+@{
+    ViewBag.Title = "Productos - Lois's Market";
+}
+
+<section class="page-header">
+    <h1>Productos</h1>
+    <p>Explora nuestra amplia selección de productos frescos y de alta calidad.</p>
+</section>
+
+<section class="categories">
+    <div class="categories-grid">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var categoria = Model[i];
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="/Content/images/categorias/categoria-@(categoria.Id).jpg" alt="@categoria.Nombre" />
+                </div>
+                <div class="category-info">
+                    <h2>@categoria.Nombre</h2>
+                    <p>@categoria.Descripcion</p>
+                    <a href="@Url.Action("Categoria", "Productos", new { id = categoria.Id })" class="btn btn-primary">Ver Productos</a>
+                </div>
+            </div>
+        }
+    </div>
+</section>

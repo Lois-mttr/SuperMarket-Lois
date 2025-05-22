@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/dark-mode.css" rel="stylesheet" type="text/css" disabled id="dark-mode-styles" />
+    @RenderSection("styles", required: false)
+</head>
+<body class="@(Request.Cookies["theme"]?.Value == "dark" ? "dark-mode" : "")">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Content/images/logo.png" alt="Lois's Market" />
+                    <span>Lois's Market</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Productos", "Index", "Productos")</li>
+                    <li>@Html.ActionLink("Carrito de Compras", "Index", "Carrito")</li>
+                    <li>@Html.ActionLink("Sobre Nosotros", "Index", "Nosotros")</li>
+                    <li>@Html.ActionLink("Contacto", "Index", "Contacto")</li>
+                </ul>
+            </nav>
+            <div class="user-controls">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lois's Market</h3>
+                    <p>Lois's Market es tu destino para productos frescos y de alta calidad a precios accesibles.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+                        <li><a href="@Url.Action("Index", "Productos")">Productos</a></li>
+                        <li><a href="@Url.Action("Index", "Carrito")">Carrito de Compras</a></li>
+                        <li><a href="@Url.Action("Index", "Nosotros")">Sobre Nosotros</a></li>
+                        <li><a href="@Url.Action("Index", "Contacto")">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contáctanos</h3>
+                    <p>Valle la Laguna de Apoyo, Masaya</p>
+                    <p>Teléfono: (+505) 8735-005</p>
+                    <p>Email: info@loismarket.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; @DateTime.Now.Year - Lois's Market</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/site.js"></script>
+    <script src="~/Scripts/dark-mode.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

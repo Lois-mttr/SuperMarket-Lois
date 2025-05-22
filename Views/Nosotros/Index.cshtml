@@ -1,0 +1,91 @@
+@{
+    ViewBag.Title = "Sobre Nosotros - Lois's Market";
+}
+
+<section class="page-header">
+    <h1>Sobre Nosotros</h1>
+</section>
+
+<section class="about-content">
+    <div class="about-grid">
+        <div class="about-text">
+            <h2>Nuestra Historia</h2>
+            <p>Lois's Market fue fundado en 2010 con la misión de ofrecer productos frescos y de alta calidad a precios accesibles.</p>
+            <p>Desde nuestros humildes comienzos como una pequeña tienda local, hemos crecido hasta convertirnos en uno de los supermercados más reconocidos de la región.</p>
+            <p>Nuestro compromiso con la calidad, el servicio al cliente y la sostenibilidad nos ha permitido ganarnos la confianza de miles de clientes satisfechos.</p>
+
+            <h2>Nuestra Misión</h2>
+            <p>Nuestra misión es proporcionar a nuestros clientes productos frescos y de alta calidad, promover hábitos alimenticios saludables y contribuir al bienestar de nuestra comunidad y el medio ambiente.</p>
+
+            <h2>Nuestros Valores</h2>
+            <ul class="values-list">
+                <li>
+                    <strong>Calidad</strong>
+                    <p>Nos comprometemos a ofrecer solo productos de la más alta calidad, seleccionados cuidadosamente para garantizar la satisfacción de nuestros clientes.</p>
+                </li>
+                <li>
+                    <strong>Sostenibilidad</strong>
+                    <p>Trabajamos con proveedores locales y prácticas sostenibles para reducir nuestro impacto ambiental y promover la economía local.</p>
+                </li>
+                <li>
+                    <strong>Comunidad</strong>
+                    <p>Apoyamos a nuestra comunidad a través de iniciativas sociales, donaciones y la creación de empleo local.</p>
+                </li>
+                <li>
+                    <strong>Innovación</strong>
+                    <p>Buscamos constantemente nuevas formas de mejorar nuestros productos y servicios para satisfacer las necesidades cambiantes de nuestros clientes.</p>
+                </li>
+            </ul>
+        </div>
+        <div class="about-image">
+            <img src="~/Content/images/about-us.jpg" alt="Sobre Nosotros" />
+        </div>
+    </div>
+</section>
+
+<section class="team">
+    <h2>Nuestro Equipo</h2>
+    <div class="team-grid">
+        @for (int i = 1; i <= 4; i++)
+        {
+            string nombre = "";
+            string posicion = "";
+            string bio = "";
+
+            switch (i)
+            {
+                case 1:
+                    nombre = "Juan Pérez";
+                    posicion = "Director General";
+                    bio = "Juan tiene más de 20 años de experiencia en la industria alimentaria y ha liderado Supermercado MVC desde sus inicios.";
+                    break;
+                case 2:
+                    nombre = "María González";
+                    posicion = "Directora de Operaciones";
+                    bio = "María supervisa todas las operaciones diarias y se asegura de que nuestros clientes reciban el mejor servicio posible.";
+                    break;
+                case 3:
+                    nombre = "Carlos Rodríguez";
+                    posicion = "Jefe de Compras";
+                    bio = "Carlos trabaja directamente con nuestros proveedores para asegurar que solo los mejores productos lleguen a nuestras tiendas.";
+                    break;
+                case 4:
+                    nombre = "Ana Martínez";
+                    posicion = "Directora de Marketing";
+                    bio = "Ana es responsable de nuestras estrategias de marketing y comunicación con los clientes.";
+                    break;
+            }
+
+            @*<div class="team-member">
+                <div class="team-member-image">
+                    <img src="~/Content/images/team/team-@i.jpg" alt="Miembro del Equipo @i" />
+                </div>
+                <div class="team-member-info">
+                    <h3>@nombre</h3>
+                    <p class="team-member-position">@posicion</p>
+                    <p class="team-member-bio">@bio</p>
+                </div>
+            </div>*@
+        }
+    </div>
+</section>

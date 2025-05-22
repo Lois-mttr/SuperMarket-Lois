@@ -1,0 +1,69 @@
+﻿@model List<SuperMarket_Lois.Models.Producto>
+@{
+    ViewBag.Title = "Inicio - Lois's Market";
+}
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Bienvenido a Lois's Market</h1>
+        <p>Tu destino para productos frescos y de alta calidad</p>
+        <a href="@Url.Action("Index", "Productos")" class="btn btn-primary">Comprar Ahora</a>
+    </div>
+</section>
+
+<section class="features">
+    <h2>¿Por qué elegirnos?</h2>
+    <div class="features-grid">
+        <div class="feature">
+            <div class="feature-icon">🍎</div>
+            <h3>Productos Frescos</h3>
+            <p>Ofrecemos productos frescos directamente de los agricultores locales.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🚚</div>
+            <h3>Entrega Rápida</h3>
+            <p>Entregamos tus compras en menos de 24 horas.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">💰</div>
+            <h3>Mejores Precios</h3>
+            <p>Garantizamos los mejores precios del mercado.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🛒</div>
+            <h3>Pedidos Fáciles</h3>
+            <p>Realiza tus pedidos en línea de manera rápida y sencilla.</p>
+        </div>
+    </div>
+</section>
+
+<section class="featured-products">
+    <h2>Productos Destacados</h2>
+    <div class="products-grid">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var producto = Model[i];
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="@producto.ImagenUrl" alt="@producto.Nombre" />
+                </div>
+                <div class="product-info">
+                    <h3>@producto.Nombre</h3>
+                    <p class="product-description">@producto.Descripcion</p>
+                    <p class="product-price">@string.Format("{0:C}", producto.Precio)</p>
+                    <div class="product-actions">
+                        <a href="@Url.Action("Detalle", "Productos", new { id = producto.Id })" class="btn btn-secondary">Ver Detalles</a>
+                        <form action="@Url.Action("Agregar", "Carrito")" method="post">
+                            <input type="hidden" name="productoId" value="@producto.Id" />
+                            <input type="hidden" name="cantidad" value="1" />
+                            <button type="submit" class="btn btn-primary">Añadir al Carrito</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="view-all">
+        <a href="@Url.Action("Index", "Productos")" class="btn btn-outline">Ver Todos los Productos</a>
+    </div>
+</section>

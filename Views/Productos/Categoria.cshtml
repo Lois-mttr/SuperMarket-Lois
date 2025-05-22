@@ -1,0 +1,51 @@
+@model List<SuperMarket_Lois.Models.Producto>
+@{
+    var categoria = ViewBag.Categoria as SuperMarket_Lois.Models.Categoria;
+    ViewBag.Title = categoria + " - Lois's Market";
+}
+
+<section class="page-header">
+    <h1>@categoria.Nombre</h1>
+    <p>@categoria.Descripcion</p> 
+    <div class="breadcrumbs">
+        <a href="@Url.Action("Index", "Home")">Inicio</a> &gt;
+        <a href="@Url.Action("Index", "Productos")">Productos</a> &gt;
+        <span>@categoria.Nombre</span>
+    </div>
+</section>
+
+<section class="products">
+    <div class="products-grid">
+        @if (Model.Count > 0)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                var producto = Model[i];
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="@producto.ImagenUrl" alt="@producto.Nombre" />
+                    </div>
+                    <div class="product-info">
+                        <h3>@producto.Nombre</h3>
+                        <p class="product-description">@producto.Descripcion</p>
+                        <p class="product-price">@string.Format("{0:C}", producto.Precio)</p>
+                        <div class="product-actions">
+                            <a href="@Url.Action("Detalle", "Productos", new { id = producto.Id })" class="btn btn-secondary">Ver Detalles</a>
+                            <form action="@Url.Action("Agregar", "Carrito")" method="post">
+                                <input type="hidden" name="productoId" value="@producto.Id" />
+                                <input type="hidden" name="cantidad" value="1" />
+                                <button type="submit" class="btn btn-primary">Añadir al Carrito</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="no-products">
+                <p>No hay productos disponibles en esta categoría.</p>
+            </div>
+        }
+    </div>
+</section>

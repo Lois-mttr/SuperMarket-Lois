@@ -1,0 +1,100 @@
+﻿@model SuperMarket_Lois.Models.ContactoForms
+@{
+    ViewBag.Title = "Contacto - Lois's Market";
+}
+
+<section class="page-header">
+    <h1>Contacto</h1>
+</section>
+
+<section class="contact-content">
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Mensaje"]
+        </div>
+    }
+
+    <div class="contact-grid">
+        <div class="contact-info">
+            <h2>Ponte en Contacto</h2>
+            <p>¿Tienes alguna pregunta, sugerencia o comentario? No dudes en contactarnos. Estamos aquí para ayudarte.</p>
+
+            <div class="contact-details">
+                <div class="contact-detail">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-text">
+                        <h3>Dirección</h3>
+                        <p>Valle la Laguna de apoyo, Masaya</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-text">
+                        <h3>Teléfono</h3>
+                        <p>(+505) 8735-005</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-text">
+                        <h3>Correo Electrónico</h3>
+                        <p>info@loismarket.com</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">🕒</div>
+                    <div class="contact-text">
+                        <h3>Horario de Atención</h3>
+                        <p>Lunes a Viernes: 9:00 - 21:00<br>Sábados: 9:00 - 14:00<br>Domingos: Cerrado</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form">
+            <h2>Enviar Mensaje</h2>
+            @using (Html.BeginForm("Enviar", "Contacto", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Nombre)
+                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Asunto)
+                    @Html.TextBoxFor(m => m.Asunto, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Asunto, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Mensaje)
+                    @Html.TextAreaFor(m => m.Mensaje, new { @class = "form-control", rows = 5 })
+                    @Html.ValidationMessageFor(m => m.Mensaje, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="map">
+    <h2>Encuéntranos</h2>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.678901234567!2d-73.98765432109876!3d40.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDA3JzI0LjQiTiA3M8KwNTknMTUuNiJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</section>
+
+@section scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

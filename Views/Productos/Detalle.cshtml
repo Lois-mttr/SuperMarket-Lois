@@ -1,0 +1,81 @@
+@model SuperMarket_Lois.Models.Producto
+@{
+    ViewBag.Title = Model.Nombre + " - Lois's Market";
+}
+
+<section class="page-header">
+    <div class="breadcrumbs">
+        <a href="@Url.Action("Index", "Home")">Inicio</a> &gt;
+        <a href="@Url.Action("Index", "Productos")">Productos</a> &gt;
+        <a href="@Url.Action("Categoria", "Productos", new { id = Model.CategoriaId })">@Model.Categoria?.Nombre</a> &gt;
+        <span>@Model.Nombre</span>
+    </div>
+</section>
+
+<section class="product-detail">
+    <div class="product-detail-grid">
+        <div class="product-detail-image">
+            <img src="@Model.ImagenUrl" alt="@Model.Nombre" />
+        </div>
+        <div class="product-detail-info">
+            <h1>@Model.Nombre</h1>
+            <p class="product-detail-description">@Model.Descripcion</p>
+            <p class="product-detail-price">@string.Format("{0:C}", Model.Precio)</p>
+
+            <div class="product-detail-availability">
+                @if (Model.Disponible)
+                {
+                    <span class="available">En Stock</span>
+                }
+                else
+                {
+                    <span class="unavailable">Agotado</span>
+                }
+            </div>
+
+            <form action="@Url.Action("Agregar", "Carrito")" method="post" class="add-to-cart-form">
+                <div class="quantity-control">
+                    <label for="cantidad">Cantidad:</label>
+                    <div class="quantity-buttons">
+                        <button type="button" class="quantity-decrease">-</button>
+                        <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="99" />
+                        <button type="button" class="quantity-increase">+</button>
+                    </div>
+                </div>
+                <input type="hidden" name="productoId" value="@Model.Id" />
+                <button type="submit" class="btn btn-primary btn-large" @(Model.Disponible ? "" : "disabled")>
+                    Añadir al Carrito
+                </button>
+            </form>
+
+            <div class="product-detail-meta">
+                <p><strong>Categoría:</strong> <a href="@Url.Action("Categoria", "Productos", new { id = Model.CategoriaId })">@Model.Categoria?.Nombre</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quantity control
+            const quantityInput = document.getElementById('cantidad');
+            const decreaseBtn = document.querySelector('.quantity-decrease');
+            const increaseBtn = document.querySelector('.quantity-increase');
+
+            decreaseBtn.addEventListener('click', function() {
+                const currentValue = parseInt(quantityInput.value);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+
+            increaseBtn.addEventListener('click', function() {
+                const currentValue = parseInt(quantityInput.value);
+                if (currentValue < 99) {
+                    quantityInput.value = currentValue + 1;
+                }
+            });
+        });
+    </script>
+}
