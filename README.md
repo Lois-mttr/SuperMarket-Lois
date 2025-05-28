@@ -5,4 +5,7 @@
 
 #### Home
 <p>The home page shows an overview of everything on the site, from products to company presentation. </p>
-![image](https://github.com/user-attachments/assets/5b57bfad-90f9-4c6c-8623-05e70aa6383a)
+
+![image](https://github.com/user-attachments/assets/2c86e03d-625a-47fa-b32f-1d045319d69c)
+
+![image](https://github.com/user-attachments/assets/a9115bf0-abdc-453e-8036-0575ddc60b4a)
